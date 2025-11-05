@@ -24,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* Navbar Styling */
         .navbar {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
             padding: 1rem 0;
@@ -57,7 +56,6 @@
             transform: translateY(-2px);
         }
 
-        /* Banner Carousel */
         .banner-carousel {
             margin-top: 76px;
         }
@@ -95,7 +93,6 @@
             margin-top: 15px;
         }
 
-        /* Hero Section */
         .hero-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
@@ -186,7 +183,6 @@
             color: white;
         }
 
-        /* Cards Section */
         .cards-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
@@ -279,7 +275,6 @@
             margin-bottom: 20px;
         }
 
-        /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--primary-color) 0%, #000 100%);
             color: white;
@@ -352,7 +347,6 @@
             text-align: center;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-content {
                 flex-direction: column;
@@ -378,7 +372,7 @@
 </head>
 
 <body>
-    <!-- Navbar -->
+
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-futbol"></i> Elite FC</a>
@@ -404,7 +398,6 @@
         </div>
     </nav>
 
-    <!-- Banner Carousel -->
     <div id="bannerCarousel" class="carousel slide banner-carousel" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
@@ -442,7 +435,6 @@
         </button>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero-section" id="about">
         <div class="container">
             <div class="hero-content">
@@ -464,7 +456,6 @@
         </div>
     </section>
 
-    <!-- Cards Section -->
     <section class="cards-section" id="features">
         <div class="container">
             <h2 class="section-title">What We Offer</h2>
@@ -513,7 +504,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="row">
@@ -557,7 +547,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -571,13 +560,13 @@
             });
         });
 
-        // Read More functionality
+
         function showMore(e) {
             e.preventDefault();
             alert('Learn more about our rich history, legendary players, championship victories, and our vision for the future. Visit our club museum and meet our coaching staff!');
         }
 
-        // Navbar background change on scroll
+
         window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -587,7 +576,7 @@
             }
         });
 
-        // Auto-start carousel
+
         const carousel = new bootstrap.Carousel(document.getElementById('bannerCarousel'), {
             interval: 4500,
             wrap: true
@@ -596,3 +585,4 @@
 </body>
 
 </html>
+
