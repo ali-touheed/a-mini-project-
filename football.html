@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Football Club</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --gold-color: #ffd700;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navbar-brand i {
+            color: var(--highlight-color);
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--gold-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Banner Carousel */
+        .banner-carousel {
+            margin-top: 76px;
+        }
+
+        .carousel-item {
+            height: 600px;
+            background: var(--primary-color);
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .carousel-caption {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.9) 0%, rgba(15, 52, 96, 0.9) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            bottom: 50px;
+        }
+
+        .carousel-caption h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-caption p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(233, 69, 96, 0.4);
+            border: 3px solid var(--highlight-color);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .hero-text {
+            flex: 1;
+            color: white;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--gold-color);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 25px;
+        }
+
+        .btn-read-more {
+            background: linear-gradient(135deg, var(--highlight-color) 0%, #c0392b 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .btn-read-more:hover {
+            background: linear-gradient(135deg, #c0392b 0%, var(--highlight-color) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.6);
+            color: white;
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .custom-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            height: 100%;
+            background: white;
+            position: relative;
+        }
+
+        .custom-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--highlight-color) 0%, var(--gold-color) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .custom-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .custom-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(233, 69, 96, 0.3);
+        }
+
+        .custom-card img {
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .custom-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .custom-card .card-body {
+            padding: 30px;
+        }
+
+        .custom-card .card-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .custom-card .card-text {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--highlight-color) 0%, var(--gold-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #000 100%);
+            color: white;
+            padding: 60px 0 20px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--highlight-color) 0%, var(--gold-color) 50%, var(--highlight-color) 100%);
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: var(--gold-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer ul li a:hover {
+            color: var(--highlight-color);
+            padding-left: 8px;
+        }
+
+        .footer ul li i {
+            margin-right: 10px;
+            color: var(--highlight-color);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.8rem;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            color: var(--highlight-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-item {
+                height: 350px;
+            }
+
+            .carousel-caption h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-futbol"></i> Elite FC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Club</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Carousel -->
+    <div id="bannerCarousel" class="carousel slide banner-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200" alt="Football Stadium">
+                <div class="carousel-caption">
+                    <h2>Welcome to Elite FC</h2>
+                    <p>Where Champions Are Made</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200" alt="Football Team">
+                <div class="carousel-caption">
+                    <h2>Join Our Legacy</h2>
+                    <p>Building Tomorrow's Stars Today</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200" alt="Football Action">
+                <div class="carousel-caption">
+                    <h2>Passion & Glory</h2>
+                    <p>United in Victory</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800" alt="Football Club">
+                </div>
+                <div class="hero-text">
+                    <h2>Our Story</h2>
+                    <p>Elite FC was founded with a vision to create a world-class football club that nurtures talent,
+                        embodies sportsmanship, and brings glory to our community. For over two decades, we've been home
+                        to champions, legends, and future stars.</p>
+                    <p>Our state-of-the-art facilities, expert coaching staff, and unwavering commitment to excellence
+                        make us one of the most prestigious football clubs in the region. Join us on our journey to
+                        greatness!</p>
+                    <a href="#" class="btn-read-more" onclick="showMore(event)">Discover More <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section" id="features">
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <p class="section-subtitle">Experience football excellence at its finest</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=600"
+                            alt="Youth Academy">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users card-icon"></i>
+                            <h5 class="card-title">Youth Academy</h5>
+                            <p class="card-text">Develop your skills with professional coaches in our renowned youth
+                                academy. We train the next generation of football stars with cutting-edge techniques and
+                                personalized attention.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=600"
+                            alt="Training Facilities">
+                        <div class="card-body text-center">
+                            <i class="fas fa-dumbbell card-icon"></i>
+                            <h5 class="card-title">World-Class Facilities</h5>
+                            <p class="card-text">Train like a pro in our premium facilities featuring FIFA-standard
+                                pitches, modern gyms, recovery centers, and tactical analysis rooms equipped with the
+                                latest technology.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600"
+                            alt="Professional Coaching">
+                        <div class="card-body text-center">
+                            <i class="fas fa-trophy card-icon"></i>
+                            <h5 class="card-title">Championship Teams</h5>
+                            <p class="card-text">Be part of winning teams across multiple age groups and divisions. Our
+                                competitive spirit and strategic excellence have earned us numerous trophies and
+                                championships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-futbol"></i> Elite FC</h5>
+                    <p>Where passion meets excellence. Join the most prestigious football club and be part of our
+                        winning legacy. Together, we rise to greatness!</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> About Club</a></li>
+                        <li><a href="#features"><i class="fas fa-angle-right"></i> Features</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Teams & Squads</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Fixtures & Results</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Us</h5>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Elite Stadium, Victory Road</li>
+                        <li><i class="fas fa-phone"></i> +92 300 1234567</li>
+                        <li><i class="fas fa-envelope"></i> info@elitefc.com</li>
+                        <li><i class="fas fa-clock"></i> Training: Mon-Sat 9AM - 8PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elite Football Club. All Rights Reserved. | Built with <i class="fas fa-heart"
+                        style="color: #e94560;"></i> for Football</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Read More functionality
+        function showMore(e) {
+            e.preventDefault();
+            alert('Learn more about our rich history, legendary players, championship victories, and our vision for the future. Visit our club museum and meet our coaching staff!');
+        }
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'linear-gradient(135deg, #000 0%, var(--primary-color) 100%)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%)';
+            }
+        });
+
+        // Auto-start carousel
+        const carousel = new bootstrap.Carousel(document.getElementById('bannerCarousel'), {
+            interval: 4500,
+            wrap: true
+        });
+    </script>
+</body>
+
+</html>
